@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    scroll-behavior: smooth;
+  }
+  html, body {
+    font-family: 'Alexandria', 'Tajawal', sans-serif;
+    overflow-x: hidden;
+    width: 100%;
+  }
+  body {
+    @apply bg-surface text-ink antialiased;
+  }
+  ::selection {
+    @apply bg-primary-100 text-primary-900;
+  }
+  :focus-visible {
+    outline: 2px solid #0D9488;
+    outline-offset: 3px;
+  }
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: #F1F5F9; }
+  ::-webkit-scrollbar-thumb { @apply bg-primary-300 rounded-full; }
+}
+
+@layer components {
+  /* ── Luxury eyebrow label ── */
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-semibold tracking-[0.2em] uppercase text-primary-500;
+  }
+  .eyebrow-line::before, .eyebrow-line::after {
+    content: '';
+    @apply inline-block w-8 h-px bg-primary-400 align-middle;
+  }
+
+  /* ── Section headings ── */
+  .section-heading {
+    @apply text-3xl sm:text-4xl md:text-[2.75rem] font-bold text-navy-900 leading-[1.2] tracking-tight;
+  }
+  .section-heading-light {
+    @apply text-3xl sm:text-4xl md:text-[2.75rem] font-bold text-white leading-[1.2] tracking-tight;
+  }
+
+  /* ── Buttons ── */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2.5 rounded-full bg-teal-gradient px-7 py-3.5 font-semibold text-white shadow-glow transition-all duration-300 hover:shadow-luxury hover:-translate-y-0.5 active:translate-y-0;
+  }
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2.5 rounded-full border-2 border-primary-500 px-7 py-3.5 font-semibold text-primary-600 transition-all duration-300 hover:bg-primary-500 hover:text-white hover:-translate-y-0.5;
+  }
+  .btn-gold {
+    @apply inline-flex items-center justify-center gap-2.5 rounded-full bg-gold-gradient px-7 py-3.5 font-semibold text-white shadow-gold transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0;
+  }
+  .btn-whatsapp {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-3 font-semibold text-white shadow-md transition-all duration-300 hover:brightness-95 hover:-translate-y-0.5;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-6 py-3 font-semibold text-white/90 transition-all duration-300 hover:bg-white/10 hover:border-white/40;
+  }
+
+  /* ── Cards ── */
+  .card {
+    @apply rounded-2xl bg-white border border-navy-100/60 shadow-card transition-all duration-300;
+  }
+  .card-dark {
+    @apply rounded-2xl bg-navy-800 border border-white/10 transition-all duration-300;
+  }
+  .card-luxury {
+    @apply rounded-2xl bg-white border border-navy-100/60 shadow-card transition-all duration-300 relative overflow-hidden;
+  }
+  .card-luxury::before {
+    content: '';
+    @apply absolute top-0 left-0 right-0 h-0.5 bg-teal-gradient;
+  }
+
+  /* ── Divider ── */
+  .section-divider {
+    @apply w-12 h-0.5 bg-primary-400 mx-auto mt-4 mb-0 rounded-full;
+  }
+
+  /* ── Input fields ── */
+  .lux-input {
+    @apply w-full rounded-xl border border-navy-100 bg-surface px-4 py-3.5 text-sm text-ink placeholder-ink-soft/60 outline-none transition-all duration-200 focus:border-primary-400 focus:bg-white focus:ring-2 focus:ring-primary-100;
+  }
+  .lux-select {
+    @apply w-full rounded-xl border border-navy-100 bg-surface px-4 py-3.5 text-sm text-ink outline-none transition-all duration-200 focus:border-primary-400 focus:bg-white focus:ring-2 focus:ring-primary-100 appearance-none cursor-pointer;
+  }
+
+  /* ── Admin (unchanged) ── */
+  .admin-card { @apply rounded-2xl bg-surface-card border border-slate-100 shadow-card; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-bold transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-50; }
+  .admin-btn-primary { @apply btn bg-primary-500 text-white hover:bg-primary-600 shadow-sm hover:shadow-md; }
+  .admin-btn-outline { @apply btn border border-slate-200 text-ink-soft hover:bg-slate-50; }
+  .admin-btn-danger { @apply btn bg-red-50 text-red-600 hover:bg-red-100; }
+  .btn-icon { @apply inline-flex h-9 w-9 items-center justify-center rounded-lg transition-colors; }
+  .input-field { @apply w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary-400 focus:ring-2 focus:ring-primary-100; }
+  .badge { @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-bold; }
+
+  /* ── Gallery mobile scroll ── */
+  .gallery-mobile-scroll {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .gallery-mobile-scroll::-webkit-scrollbar { display: none; }
+
+  /* ── Animations ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fadeUp { animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
+}
