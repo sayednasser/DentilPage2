@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Star } from 'lucide-react'
 import Modal from '../ui/Modal'
-import ImageUploadPreview from '../ui/ImageUploadPreview'
 
-const EMPTY_FORM = { patientName: '', rating: 5, comment: '', image: '' }
+const EMPTY_FORM = { patientName: '', rating: 5, comment: ''}
 
 export default function ReviewEditModal({ open, onClose, onSubmit, review }) {
   const [form, setForm] = useState(EMPTY_FORM)
@@ -81,11 +80,6 @@ export default function ReviewEditModal({ open, onClose, onSubmit, review }) {
           {errors.comment && <p className="mt-1 text-xs text-red-500">{errors.comment}</p>}
         </div>
 
-        <ImageUploadPreview
-          label="صورة (اختياري)"
-          value={form.image}
-          onChange={(val) => update('image', val)}
-        />
 
         <div className="flex justify-end gap-3 border-t border-slate-100 pt-4">
           <button type="button" onClick={onClose} className="admin-btn-outline">

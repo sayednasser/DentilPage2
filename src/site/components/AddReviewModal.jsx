@@ -1,13 +1,15 @@
 import { useRef, useState } from 'react'
 import { CheckCircle2, AlertCircle } from 'lucide-react'
 import Modal from '../../admin/components/ui/Modal'
-import ImageUploadPreview from '../../admin/components/ui/ImageUploadPreview'
 import StarRatingInput from './StarRatingInput'
 import { useSubmitReview } from '../hooks/useSubmitReview'
 import { useLang } from '../i18n/LanguageContext'
 
-const EMPTY_FORM = { patientName: '', rating: 5, comment: '', image: '' }
-
+const EMPTY_FORM = {
+  patientName: '',
+  rating: 5,
+  comment: '',
+}
 export default function AddReviewModal({ open, onClose }) {
   const { submitReview } = useSubmitReview()
   const { t } = useLang()
@@ -106,11 +108,7 @@ export default function AddReviewModal({ open, onClose }) {
             )}
           </div>
 
-          <ImageUploadPreview
-            label={t.addReview.imageLabel}
-            value={form.image}
-            onChange={(val) => update('image', val)}
-          />
+
 
           {submitError && (
             <div className="flex items-center gap-2 rounded-xl bg-red-50 px-4 py-3 text-sm font-semibold text-red-600">
