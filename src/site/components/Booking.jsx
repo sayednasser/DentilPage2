@@ -34,6 +34,11 @@ export default function Booking() {
   )
 
   const availableDays = selectedDoctor?.schedule?.map((s) => s.day) || []
+  console.log("Doctor:", selectedDoctor?.name)
+  console.log("Schedule:", selectedDoctor?.schedule)
+  console.log("Available Days:", availableDays)
+  console.log("Selected Day:", day)
+  console.log("Resolved Date:", resolvedDate)
 
   const daySchedule = useMemo(() => {
     if (!selectedDoctor || !day) return null
@@ -204,11 +209,10 @@ export default function Booking() {
                       <button
                         key={d}
                         onClick={() => handleDayChange(d)}
-                        className={`rounded-xl border-2 px-4 py-2 text-sm font-semibold transition-all duration-200 ${
-                          day === d
+                        className={`rounded-xl border-2 px-4 py-2 text-sm font-semibold transition-all duration-200 ${day === d
                             ? 'border-primary-500 bg-primary-500 text-white shadow-glow'
                             : 'border-navy-100 text-ink-soft hover:border-primary-300 hover:text-primary-600'
-                        }`}
+                          }`}
                       >
                         {t.booking?.days?.[d] || d}
                       </button>
@@ -239,13 +243,12 @@ export default function Booking() {
                           key={time}
                           disabled={isBooked}
                           onClick={() => { setSlot(time); setConfirmed(false) }}
-                          className={`rounded-xl border-2 px-2 py-2.5 text-xs font-semibold transition-all duration-200 ${
-                            isBooked
+                          className={`rounded-xl border-2 px-2 py-2.5 text-xs font-semibold transition-all duration-200 ${isBooked
                               ? 'cursor-not-allowed border-navy-50 bg-navy-50 text-navy-200 line-through'
                               : isSelected
-                              ? 'border-primary-500 bg-primary-500 text-white shadow-glow'
-                              : 'border-navy-100 text-ink-soft hover:border-primary-300'
-                          }`}
+                                ? 'border-primary-500 bg-primary-500 text-white shadow-glow'
+                                : 'border-navy-100 text-ink-soft hover:border-primary-300'
+                            }`}
                         >
                           {time}
                         </button>
@@ -286,9 +289,8 @@ export default function Booking() {
                   onClick={handleConfirm}
                   disabled={!canConfirm || submitting}
                   aria-busy={submitting}
-                  className={`btn-primary w-full ${
-                    !canConfirm ? '!cursor-not-allowed !bg-navy-200 !shadow-none !transform-none' : ''
-                  }`}
+                  className={`btn-primary w-full ${!canConfirm ? '!cursor-not-allowed !bg-navy-200 !shadow-none !transform-none' : ''
+                    }`}
                 >
                   <CalendarCheck size={18} />
                   {submitting ? t.booking?.confirming : t.booking?.confirm || 'تأكيد الحجز'}
