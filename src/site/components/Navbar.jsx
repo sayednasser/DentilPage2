@@ -142,7 +142,8 @@ export default function Navbar() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="overflow-hidden border-t border-white/10 bg-navy-900/98 backdrop-blur-xl lg:hidden"
+            className="overflow-hidden border-t border-white/10 lg:hidden"
+            style={{ backgroundColor: '#0d1b2a' }}
           >
             <div className="mx-auto max-w-7xl px-4 py-4 space-y-1">
               {navLinks.map((link, i) => (
