@@ -113,3 +113,4 @@ GET/PATCH   /settings
 ## التقنيات المستخدمة
 
 React 18 + Vite 5 + React Router 6 + Tailwind CSS 3 + Axios + Framer Motion + Lucide React، بدعم كامل RTL وخط Cairo، ومتجاوب بالكامل على كل الشاشات.
+# DentalClinic
