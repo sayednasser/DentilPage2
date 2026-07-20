@@ -15,6 +15,11 @@ export default function Footer() {
   const facebook = settings?.facebook || ''
   const instagram = settings?.instagram || ''
   const youtube = settings?.youtube || ''
+  console.log({
+  facebook,
+  instagram,
+  youtube,
+})
 
   const formatWhatsAppNumber = (phone) => {
     if (!phone) return ''
