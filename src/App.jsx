@@ -2,10 +2,10 @@ import { lazy, Suspense } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import HomePage from './site/HomePage'
 
-// Admin panel is code-split from the public landing page: visitors browsing
-// the marketing site never download admin JS, and the admin bundle only
-// loads once someone actually navigates to /admin. No behavior changes —
-// only how/when the code is fetched.
+import AdminAccess from './admin/pages/AdminAccess'
+import AdminGuard from './admin/components/AdminGuard'
+
+// Admin Pages
 const AdminLayout = lazy(() => import('./admin/components/layout/AdminLayout'))
 const Dashboard = lazy(() => import('./admin/pages/Dashboard'))
 const Doctors = lazy(() => import('./admin/pages/Doctors'))
@@ -27,14 +27,21 @@ function AdminFallback() {
 export default function App() {
   return (
     <Routes>
+      {/* الموقع الرئيسي */}
       <Route path="/" element={<HomePage />} />
 
+      {/* صفحة إدخال كود الإدارة */}
+      <Route path="/admin" element={<AdminAccess />} />
+
+      {/* لوحة التحكم */}
       <Route
-        path="/manage-9Xf7k-clinic-2026-admin"
+        path="/clinic-admin"
         element={
-          <Suspense fallback={<AdminFallback />}>
-            <AdminLayout />
-          </Suspense>
+          <AdminGuard>handleSubmit
+            <Suspense fallback={<AdminFallback />}>
+              <AdminLayout />
+            </Suspense>
+          </AdminGuard>
         }
       >
         <Route index element={<Dashboard />} />
