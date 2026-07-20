@@ -9,16 +9,18 @@ function normaliseSettings(raw) {
     ...data,
 
     whatsapp: data.socialLinks?.whatsapp ?? '',
+    facebook: data.socialLinks?.facebook ?? '',
+    instagram: data.socialLinks?.instagram ?? '',
+    youtube: data.socialLinks?.youtube ?? '',
 
     googleMapsUrl: data.googleMap ?? '',
 
-    // عرض الصورة القادمة من الباك
     heroImage: data.heroImage?.secure_url ?? '',
 
-    // لو هتستخدم اللوجو بعدين
     logo: data.logo?.secure_url ?? '',
   }
 }
+
 function buildPayload(formData) {
   const fd = new FormData()
 
@@ -58,6 +60,9 @@ function buildPayload(formData) {
     'socialLinks',
     JSON.stringify({
       whatsapp: formData.whatsapp || '',
+      facebook: formData.facebook || '',
+      instagram: formData.instagram || '',
+      youtube: formData.youtube || '',
     })
   )
 
@@ -76,32 +81,40 @@ export async function getSettings() {
 export async function updateSettings(formData) {
   const fd = new FormData()
 
-  if (formData.clinicName)
+  if (formData.clinicName) {
     fd.append('clinicName', formData.clinicName)
+  }
 
-  if (formData.heroTitle)
+  if (formData.heroTitle) {
     fd.append('heroTitle', formData.heroTitle)
+  }
 
-  if (formData.heroDescription)
+  if (formData.heroDescription) {
     fd.append('heroDescription', formData.heroDescription)
+  }
 
-  if (formData.phone)
+  if (formData.phone) {
     fd.append('phone', formData.phone)
+  }
 
-  if (formData.address)
+  if (formData.address) {
     fd.append('address', formData.address)
+  }
 
-  if (formData.googleMapsUrl)
+  if (formData.googleMapsUrl) {
     fd.append('googleMap', formData.googleMapsUrl)
+  }
 
   fd.append(
     'socialLinks',
     JSON.stringify({
       whatsapp: formData.whatsapp || '',
+      facebook: formData.facebook || '',
+      instagram: formData.instagram || '',
+      youtube: formData.youtube || '',
     })
   )
 
-  // صورة الهيرو
   if (formData.heroImage instanceof File) {
     fd.append('image', formData.heroImage)
   }
@@ -110,3 +123,5 @@ export async function updateSettings(formData) {
 
   return normaliseSettings(data)
 }
+
+export { buildPayload }

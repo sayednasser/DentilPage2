@@ -34,6 +34,7 @@ export default function SettingsForm({ initialValues, onSave, saving }) {
 
       <section className="admin-card p-5 sm:p-6">
         <h3 className="mb-4 text-base font-extrabold text-ink">بيانات العيادة</h3>
+
         <div className="grid gap-5 sm:grid-cols-2">
           <div className="sm:col-span-2">
             <label className="label-field">اسم العيادة</label>
@@ -43,6 +44,7 @@ export default function SettingsForm({ initialValues, onSave, saving }) {
               className="input-field"
             />
           </div>
+
           <div>
             <label className="label-field">رقم الهاتف</label>
             <input
@@ -52,6 +54,7 @@ export default function SettingsForm({ initialValues, onSave, saving }) {
               dir="ltr"
             />
           </div>
+
           <div>
             <label className="label-field">رقم الواتساب</label>
             <input
@@ -61,6 +64,7 @@ export default function SettingsForm({ initialValues, onSave, saving }) {
               dir="ltr"
             />
           </div>
+
           <div className="sm:col-span-2">
             <label className="label-field">العنوان</label>
             <input
@@ -69,6 +73,7 @@ export default function SettingsForm({ initialValues, onSave, saving }) {
               className="input-field"
             />
           </div>
+
           <div className="sm:col-span-2">
             <label className="label-field">رابط Google Maps</label>
             <input
@@ -78,11 +83,49 @@ export default function SettingsForm({ initialValues, onSave, saving }) {
               dir="ltr"
             />
           </div>
+
+          {/* Social Media Links */}
+
+          <div>
+            <label className="label-field">رابط Facebook</label>
+            <input
+              value={form.facebook || ''}
+              onChange={(e) => update('facebook', e.target.value)}
+              className="input-field"
+              dir="ltr"
+              placeholder="https://facebook.com/yourpage"
+            />
+          </div>
+
+          <div>
+            <label className="label-field">رابط Instagram</label>
+            <input
+              value={form.instagram || ''}
+              onChange={(e) => update('instagram', e.target.value)}
+              className="input-field"
+              dir="ltr"
+              placeholder="https://instagram.com/yourpage"
+            />
+          </div>
+
+          <div className="sm:col-span-2">
+            <label className="label-field">رابط YouTube</label>
+            <input
+              value={form.youtube || ''}
+              onChange={(e) => update('youtube', e.target.value)}
+              className="input-field"
+              dir="ltr"
+              placeholder="https://youtube.com/@yourchannel"
+            />
+          </div>
         </div>
       </section>
 
       <section className="admin-card p-5 sm:p-6">
-        <h3 className="mb-4 text-base font-extrabold text-ink">محتوى الصفحة الرئيسية</h3>
+        <h3 className="mb-4 text-base font-extrabold text-ink">
+          محتوى الصفحة الرئيسية
+        </h3>
+
         <div className="space-y-5">
           <div>
             <label className="label-field">عنوان الصفحة الرئيسية</label>
@@ -92,6 +135,7 @@ export default function SettingsForm({ initialValues, onSave, saving }) {
               className="input-field"
             />
           </div>
+
           <div>
             <label className="label-field">وصف الصفحة الرئيسية</label>
             <textarea
@@ -105,7 +149,11 @@ export default function SettingsForm({ initialValues, onSave, saving }) {
       </section>
 
       <div className="flex justify-end">
-        <button type="submit" disabled={saving} className="admin-btn-primary">
+        <button
+          type="submit"
+          disabled={saving}
+          className="admin-btn-primary"
+        >
           <Save size={18} />
           {saving ? 'جارٍ الحفظ...' : 'حفظ الإعدادات'}
         </button>

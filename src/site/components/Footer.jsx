@@ -5,27 +5,30 @@ import { useLang } from '../i18n/LanguageContext'
 export default function Footer() {
   const settings = useClinicSettings()
   const { t } = useLang()
+
   const clinicName = settings?.clinicName || t.footer?.defaultName || 'دنتافلو'
   const phone = settings?.phone || ''
   const whatsapp = settings?.whatsapp || ''
   const address = settings?.address || ''
+
+  // Social Links
+  const facebook = settings?.facebook || ''
+  const instagram = settings?.instagram || ''
+  const youtube = settings?.youtube || ''
 
   const formatWhatsAppNumber = (phone) => {
     if (!phone) return ''
 
     let cleaned = String(phone).replace(/\D/g, '')
 
-    // لو مكتوب بصيغة دولية
     if (cleaned.startsWith('20')) {
       return cleaned
     }
 
-    // لو مكتوب 011xxxx
     if (cleaned.startsWith('0')) {
       return `20${cleaned.slice(1)}`
     }
 
-    // لو مكتوب 11xxxxxxxx
     if (cleaned.length === 10 && cleaned.startsWith('1')) {
       return `20${cleaned}`
     }
@@ -48,11 +51,11 @@ export default function Footer() {
 
   return (
     <footer className="bg-navy-900 text-white">
-      {/* Top accent line */}
       <div className="h-0.5 bg-teal-gradient" />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+
           {/* Brand */}
           <div className="lg:col-span-1">
             <div className="flex items-center gap-3 mb-5">
@@ -63,29 +66,66 @@ export default function Footer() {
               </div>
               <span className="text-lg font-bold tracking-wide">{clinicName}</span>
             </div>
+
             <p className="text-sm text-white/50 leading-relaxed max-w-xs">
               {t.footer?.tagline || 'عيادة متخصصة في طب وتجميل الأسنان بأعلى معايير الجودة.'}
             </p>
+
+            {/* Social Links */}
             <div className="mt-5 flex gap-2.5">
-              {[Facebook, Instagram, Youtube].map((Icon, i) => (
-                <a key={i} href="#" aria-label="social"
-                  className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/5 border border-white/10 transition-all hover:bg-primary-500 hover:border-primary-500 hover:shadow-glow">
-                  <Icon size={15} />
+
+              {facebook && (
+                <a
+                  href={facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Facebook"
+                  className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/5 border border-white/10 transition-all hover:bg-primary-500 hover:border-primary-500 hover:shadow-glow"
+                >
+                  <Facebook size={15} />
                 </a>
-              ))}
+              )}
+
+              {instagram && (
+                <a
+                  href={instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                  className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/5 border border-white/10 transition-all hover:bg-primary-500 hover:border-primary-500 hover:shadow-glow"
+                >
+                  <Instagram size={15} />
+                </a>
+              )}
+
+              {youtube && (
+                <a
+                  href={youtube}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Youtube"
+                  className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/5 border border-white/10 transition-all hover:bg-primary-500 hover:border-primary-500 hover:shadow-glow"
+                >
+                  <Youtube size={15} />
+                </a>
+              )}
+
             </div>
           </div>
 
-          {/* Quick links */}
+          {/* Quick Links */}
           <div>
             <h4 className="text-sm font-bold uppercase tracking-widest text-white/40 mb-5">
               {t.footer?.quickLinks || 'روابط سريعة'}
             </h4>
+
             <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.href}>
-                  <a href={link.href}
-                    className="text-sm text-white/60 hover:text-primary-400 transition-colors hover:translate-x-1 inline-block">
+                  <a
+                    href={link.href}
+                    className="text-sm text-white/60 hover:text-primary-400 transition-colors hover:translate-x-1 inline-block"
+                  >
                     {link.label}
                   </a>
                 </li>
@@ -98,30 +138,42 @@ export default function Footer() {
             <h4 className="text-sm font-bold uppercase tracking-widest text-white/40 mb-5">
               {t.footer?.contact || 'تواصل معنا'}
             </h4>
+
             <ul className="space-y-4">
+
               {phone && (
                 <li>
-                  <a href={`tel:${phoneDigits}`} className="flex items-start gap-3 text-sm text-white/60 hover:text-white transition-colors group">
+                  <a
+                    href={`tel:${phoneDigits}`}
+                    className="flex items-start gap-3 text-sm text-white/60 hover:text-white transition-colors"
+                  >
                     <Phone size={14} className="mt-0.5 flex-shrink-0 text-primary-500" />
                     {phone}
                   </a>
                 </li>
               )}
+
               {whatsapp && (
                 <li>
-                  <a href={`https://wa.me/${whatsappDigits}`} target="_blank" rel="noreferrer"
-                    className="flex items-start gap-3 text-sm text-white/60 hover:text-white transition-colors">
+                  <a
+                    href={`https://wa.me/${whatsappDigits}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-start gap-3 text-sm text-white/60 hover:text-white transition-colors"
+                  >
                     <MessageCircle size={14} className="mt-0.5 flex-shrink-0 text-primary-500" />
                     {whatsapp}
                   </a>
                 </li>
               )}
+
               {address && (
                 <li className="flex items-start gap-3 text-sm text-white/60">
                   <MapPin size={14} className="mt-0.5 flex-shrink-0 text-primary-500" />
                   {address}
                 </li>
               )}
+
             </ul>
           </div>
 
@@ -130,22 +182,28 @@ export default function Footer() {
             <h4 className="text-sm font-bold uppercase tracking-widest text-white/40 mb-5">
               {t.nav?.booking || 'الحجز'}
             </h4>
+
             <p className="text-sm text-white/50 mb-5 leading-relaxed">
               احجز موعدك الآن وابدأ رحلتك نحو ابتسامة أجمل.
             </p>
-            <a href="#booking" className="btn-primary !text-sm !px-5 !py-2.5 w-full justify-center">
+
+            <a
+              href="#booking"
+              className="btn-primary !text-sm !px-5 !py-2.5 w-full justify-center"
+            >
               {t.hero?.bookNow || 'احجز الآن'}
             </a>
           </div>
+
         </div>
       </div>
 
-      {/* Bottom bar */}
       <div className="border-t border-white/5">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-xs text-white/30">
             © {new Date().getFullYear()} {clinicName}. {t.footer?.rights || 'جميع الحقوق محفوظة.'}
           </p>
+
           <div className="flex items-center gap-1 text-xs text-white/20">
             <span className="h-1 w-1 rounded-full bg-primary-500" />
             <span>Luxury Dental Care</span>
