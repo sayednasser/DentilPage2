@@ -4,7 +4,7 @@ import Sidebar from './Sidebar'
 import Topbar from './Topbar'
 
 const TITLES = {
-  '/admin': 'لوحة التحكم',
+  '/clinic-admin': 'لوحة التحكم',
   '/clinic-admin/doctors': 'إدارة الدكاترة',
   '/clinic-admin/appointments': 'إدارة الحجوزات',
   '/clinic-admin/services': 'إدارة الخدمات',

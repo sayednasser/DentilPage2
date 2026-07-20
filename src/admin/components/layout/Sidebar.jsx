@@ -15,7 +15,7 @@ import {
 } from 'lucide-react'
 
 const links = [
-  { to: '/admin', label: 'لوحة التحكم', icon: LayoutDashboard, end: true },
+  { to: '/clinic-admin', label: 'لوحة التحكم', icon: LayoutDashboard, end: true },
   { to: '/clinic-admin/doctors', label: 'الدكاترة', icon: Stethoscope },
   { to: '/clinic-admin/appointments', label: 'الحجوزات', icon: CalendarCheck },
   { to: '/clinic-admin/services', label: 'الخدمات', icon: Sparkles },
