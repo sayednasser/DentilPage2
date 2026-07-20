@@ -30,7 +30,7 @@ export default function App() {
       <Route path="/" element={<HomePage />} />
 
       <Route
-        path="/admin"
+        path="/manage-9Xf7k-clinic-2026-admin"
         element={
           <Suspense fallback={<AdminFallback />}>
             <AdminLayout />

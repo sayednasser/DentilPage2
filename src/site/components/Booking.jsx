@@ -34,11 +34,6 @@ export default function Booking() {
   )
 
   const availableDays = selectedDoctor?.schedule?.map((s) => s.day) || []
-  console.log("Doctor:", selectedDoctor?.name)
-  console.log("Schedule:", selectedDoctor?.schedule)
-  console.log("Available Days:", availableDays)
-  console.log("Selected Day:", day)
-  console.log("Resolved Date:", resolvedDate)
 
   const daySchedule = useMemo(() => {
     if (!selectedDoctor || !day) return null
