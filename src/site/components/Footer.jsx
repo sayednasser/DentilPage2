@@ -9,7 +9,31 @@ export default function Footer() {
   const phone = settings?.phone || ''
   const whatsapp = settings?.whatsapp || ''
   const address = settings?.address || ''
-  const whatsappDigits = whatsapp.replace(/[^0-9]/g, '')
+
+  const formatWhatsAppNumber = (phone) => {
+    if (!phone) return ''
+
+    let cleaned = String(phone).replace(/\D/g, '')
+
+    // لو مكتوب بصيغة دولية
+    if (cleaned.startsWith('20')) {
+      return cleaned
+    }
+
+    // لو مكتوب 011xxxx
+    if (cleaned.startsWith('0')) {
+      return `20${cleaned.slice(1)}`
+    }
+
+    // لو مكتوب 11xxxxxxxx
+    if (cleaned.length === 10 && cleaned.startsWith('1')) {
+      return `20${cleaned}`
+    }
+
+    return cleaned
+  }
+
+  const whatsappDigits = formatWhatsAppNumber(whatsapp)
   const phoneDigits = phone.replace(/[^0-9+]/g, '')
 
   const quickLinks = [
@@ -34,7 +58,7 @@ export default function Footer() {
             <div className="flex items-center gap-3 mb-5">
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary-500 shadow-glow">
                 <svg width="18" height="18" viewBox="0 0 48 48" fill="none">
-                  <path d="M24 6c-4.5 0-6.8 2.4-9.6 2.4-3.6 0-6.4 2.9-6.4 8.2 0 5 1.6 9.9 2.9 14.6.9 3.4 1.7 7.6 4.6 7.6 3.3 0 3-9.2 8.5-9.2s5.2 9.2 8.5 9.2c2.9 0 3.7-4.2 4.6-7.6 1.3-4.7 2.9-9.6 2.9-14.6 0-5.3-2.8-8.2-6.4-8.2C30.8 8.4 28.5 6 24 6z" fill="currentColor"/>
+                  <path d="M24 6c-4.5 0-6.8 2.4-9.6 2.4-3.6 0-6.4 2.9-6.4 8.2 0 5 1.6 9.9 2.9 14.6.9 3.4 1.7 7.6 4.6 7.6 3.3 0 3-9.2 8.5-9.2s5.2 9.2 8.5 9.2c2.9 0 3.7-4.2 4.6-7.6 1.3-4.7 2.9-9.6 2.9-14.6 0-5.3-2.8-8.2-6.4-8.2C30.8 8.4 28.5 6 24 6z" fill="currentColor" />
                 </svg>
               </div>
               <span className="text-lg font-bold tracking-wide">{clinicName}</span>

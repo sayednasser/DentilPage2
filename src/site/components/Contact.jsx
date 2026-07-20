@@ -9,8 +9,32 @@ export default function Contact() {
 
   const phone = settings?.phone || '+20 123 456 7890'
   const whatsapp = settings?.whatsapp || '+20 123 456 7890'
+
+  const formatWhatsAppNumber = (phone) => {
+    if (!phone) return ''
+
+    let cleaned = String(phone).replace(/\D/g, '')
+
+    // لو مكتوب بصيغة دولية
+    if (cleaned.startsWith('20')) {
+      return cleaned
+    }
+
+    // لو مكتوب 011xxxx
+    if (cleaned.startsWith('0')) {
+      return `20${cleaned.slice(1)}`
+    }
+
+    // لو مكتوب 11xxxxxxxx
+    if (cleaned.length === 10 && cleaned.startsWith('1')) {
+      return `20${cleaned}`
+    }
+
+    return cleaned
+  }
+
   const phoneDigits = phone.replace(/[^0-9+]/g, '')
-  const whatsappDigits = whatsapp.replace(/[^0-9]/g, '')
+  const whatsappDigits = formatWhatsAppNumber(whatsapp)
   const address = settings?.address || t.contact?.defaultAddress
   const mapsUrl = settings?.googleMapsUrl || `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`
 

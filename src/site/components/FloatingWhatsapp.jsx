@@ -5,15 +5,30 @@ import { useClinicSettings } from '../hooks/useClinicSettings'
 export default function FloatingWhatsapp() {
   const settings = useClinicSettings()
 
-  // تنظيف الرقم وتحويله لصيغة واتساب الصحيحة
-  const rawPhone = settings?.whatsapp?.replace(/\D/g, '') || ''
+  const formatWhatsAppNumber = (phone) => {
+    if (!phone) return ''
 
-  const whatsappDigits =
-    rawPhone.startsWith('20')
-      ? rawPhone
-      : rawPhone.startsWith('0')
-        ? `20${rawPhone.slice(1)}`
-        : rawPhone
+    let cleaned = String(phone).replace(/\D/g, '')
+
+    // لو مكتوب بصيغة دولية
+    if (cleaned.startsWith('20')) {
+      return cleaned
+    }
+
+    // لو مكتوب 011xxxx
+    if (cleaned.startsWith('0')) {
+      return `20${cleaned.slice(1)}`
+    }
+
+    // لو مكتوب 11xxxxxxxx
+    if (cleaned.length === 10 && cleaned.startsWith('1')) {
+      return `20${cleaned}`
+    }
+
+    return cleaned
+  }
+
+  const whatsappDigits = formatWhatsAppNumber(settings?.whatsapp)
 
   return (
     <motion.a
@@ -30,7 +45,7 @@ export default function FloatingWhatsapp() {
         damping: 15,
       }}
       whileHover={{ scale: 1.08 }}
-      className="fixed bottom-6 left-6 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-floaty"
+      className="fixed bottom-6 left-6 z-[9999] flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-floaty"
     >
       <span className="absolute inset-0 animate-ping rounded-full bg-[#25D366] opacity-40" />
       <MessageCircle size={26} className="relative" />
