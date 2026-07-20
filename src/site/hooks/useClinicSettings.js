@@ -12,10 +12,23 @@ export function useClinicSettings() {
 
         setSettings({
           ...raw,
+
+          // Contact
           whatsapp: raw.socialLinks?.whatsapp ?? raw.whatsapp ?? '',
+          phone: raw.phone ?? '',
+          address: raw.address ?? '',
+
+          // Social Links
+          facebook: raw.socialLinks?.facebook ?? '',
+          instagram: raw.socialLinks?.instagram ?? '',
+          youtube: raw.socialLinks?.youtube ?? '',
+          linkedin: raw.socialLinks?.linkedin ?? '',
+          tiktok: raw.socialLinks?.tiktok ?? '',
+
+          // Maps
           googleMapsUrl: raw.googleMap ?? raw.googleMapsUrl ?? '',
 
-          // 👇 مهم
+          // Images
           heroImage: raw.heroImage?.secure_url ?? '',
         })
       })

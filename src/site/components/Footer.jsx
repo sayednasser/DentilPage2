@@ -70,47 +70,53 @@ export default function Footer() {
             <p className="text-sm text-white/50 leading-relaxed max-w-xs">
               {t.footer?.tagline || 'عيادة متخصصة في طب وتجميل الأسنان بأعلى معايير الجودة.'}
             </p>
-
             {/* Social Links */}
             <div className="mt-5 flex gap-2.5">
 
-              {facebook && (
-                <a
-                  href={facebook}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Facebook"
-                  className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/5 border border-white/10 transition-all hover:bg-primary-500 hover:border-primary-500 hover:shadow-glow"
-                >
-                  <Facebook size={15} />
-                </a>
-              )}
+              <a
+                href={facebook || '#'}
+                target={facebook ? '_blank' : undefined}
+                rel="noopener noreferrer"
+                onClick={(e) => !facebook && e.preventDefault()}
+                aria-label="Facebook"
+                className={`flex h-9 w-9 items-center justify-center rounded-xl transition-all ${facebook
+                    ? 'bg-white/5 border border-white/10 hover:bg-primary-500 hover:border-primary-500 hover:shadow-glow'
+                    : 'bg-white/5 border border-white/10 opacity-40 cursor-not-allowed'
+                  }`}
+              >
+                <Facebook size={15} />
+              </a>
 
-              {instagram && (
-                <a
-                  href={instagram}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Instagram"
-                  className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/5 border border-white/10 transition-all hover:bg-primary-500 hover:border-primary-500 hover:shadow-glow"
-                >
-                  <Instagram size={15} />
-                </a>
-              )}
+              <a
+                href={instagram || '#'}
+                target={instagram ? '_blank' : undefined}
+                rel="noopener noreferrer"
+                onClick={(e) => !instagram && e.preventDefault()}
+                aria-label="Instagram"
+                className={`flex h-9 w-9 items-center justify-center rounded-xl transition-all ${instagram
+                    ? 'bg-white/5 border border-white/10 hover:bg-primary-500 hover:border-primary-500 hover:shadow-glow'
+                    : 'bg-white/5 border border-white/10 opacity-40 cursor-not-allowed'
+                  }`}
+              >
+                <Instagram size={15} />
+              </a>
 
-              {youtube && (
-                <a
-                  href={youtube}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Youtube"
-                  className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/5 border border-white/10 transition-all hover:bg-primary-500 hover:border-primary-500 hover:shadow-glow"
-                >
-                  <Youtube size={15} />
-                </a>
-              )}
+              <a
+                href={youtube || '#'}
+                target={youtube ? '_blank' : undefined}
+                rel="noopener noreferrer"
+                onClick={(e) => !youtube && e.preventDefault()}
+                aria-label="YouTube"
+                className={`flex h-9 w-9 items-center justify-center rounded-xl transition-all ${youtube
+                    ? 'bg-white/5 border border-white/10 hover:bg-primary-500 hover:border-primary-500 hover:shadow-glow'
+                    : 'bg-white/5 border border-white/10 opacity-40 cursor-not-allowed'
+                  }`}
+              >
+                <Youtube size={15} />
+              </a>
 
             </div>
+
           </div>
 
           {/* Quick Links */}
