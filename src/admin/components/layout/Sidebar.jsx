@@ -16,13 +16,13 @@ import {
 
 const links = [
   { to: '/admin', label: 'لوحة التحكم', icon: LayoutDashboard, end: true },
-  { to: '/admin/doctors', label: 'الدكاترة', icon: Stethoscope },
-  { to: '/admin/appointments', label: 'الحجوزات', icon: CalendarCheck },
-  { to: '/admin/services', label: 'الخدمات', icon: Sparkles },
-  { to: '/admin/offers', label: 'العروض', icon: Tag },
-  { to: '/admin/gallery', label: 'قبل وبعد', icon: Images },
-  { to: '/admin/reviews', label: 'التقييمات', icon: Star },
-  { to: '/admin/settings', label: 'الإعدادات', icon: Settings },
+  { to: '/clinic-admin/doctors', label: 'الدكاترة', icon: Stethoscope },
+  { to: '/clinic-admin/appointments', label: 'الحجوزات', icon: CalendarCheck },
+  { to: '/clinic-admin/services', label: 'الخدمات', icon: Sparkles },
+  { to: '/clinic-admin/offers', label: 'العروض', icon: Tag },
+  { to: '/clinic-admin/gallery', label: 'قبل وبعد', icon: Images },
+  { to: '/clinic-admin/reviews', label: 'التقييمات', icon: Star },
+  { to: '/clinic-admin/settings', label: 'الإعدادات', icon: Settings },
 ]
 
 export default function Sidebar({ collapsed, setCollapsed, mobileOpen, setMobileOpen }) {

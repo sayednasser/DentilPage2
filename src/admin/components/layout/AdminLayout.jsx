@@ -5,13 +5,13 @@ import Topbar from './Topbar'
 
 const TITLES = {
   '/admin': 'لوحة التحكم',
-  '/admin/doctors': 'إدارة الدكاترة',
-  '/admin/appointments': 'إدارة الحجوزات',
-  '/admin/services': 'إدارة الخدمات',
-  '/admin/offers': 'إدارة العروض',
-  '/admin/gallery': 'معرض قبل وبعد',
-  '/admin/reviews': 'إدارة التقييمات',
-  '/admin/settings': 'إعدادات العيادة',
+  '/clinic-admin/doctors': 'إدارة الدكاترة',
+  '/clinic-admin/appointments': 'إدارة الحجوزات',
+  '/clinic-admin/services': 'إدارة الخدمات',
+  '/clinic-admin/offers': 'إدارة العروض',
+  '/clinic-admin/gallery': 'معرض قبل وبعد',
+  '/clinic-admin/reviews': 'إدارة التقييمات',
+  '/clinic-admin/settings': 'إعدادات العيادة',
 }
 
 export default function AdminLayout() {
