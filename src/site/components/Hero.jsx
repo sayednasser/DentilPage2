@@ -6,7 +6,30 @@ import { useLang } from '../i18n/LanguageContext'
 export default function Hero() {
   const settings = useClinicSettings()
   const { t, isRTL } = useLang()
-  const whatsappNumber = settings?.whatsapp?.replace(/[^0-9]/g, '') || '201234567890'
+  const formatWhatsAppNumber = (phone) => {
+    if (!phone) return '201234567890'
+
+    let cleaned = String(phone).replace(/\D/g, '')
+
+    // لو مكتوب بصيغة دولية
+    if (cleaned.startsWith('20')) {
+      return cleaned
+    }
+
+    // لو مكتوب 011xxxx
+    if (cleaned.startsWith('0')) {
+      return `20${cleaned.slice(1)}`
+    }
+
+    // لو مكتوب 11xxxxxxxx
+    if (cleaned.length === 10 && cleaned.startsWith('1')) {
+      return `20${cleaned}`
+    }
+
+    return cleaned
+  }
+
+  const whatsappNumber = formatWhatsAppNumber(settings?.whatsapp)
   const ArrowIcon = isRTL ? ArrowLeft : ArrowRight
 
   const stats = [
